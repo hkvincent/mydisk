@@ -7,3 +7,5 @@ install docker and docker compose.
 run it with the command:
 
 docker-compose up -d
+
+access it using 127.0.0.1:8080
