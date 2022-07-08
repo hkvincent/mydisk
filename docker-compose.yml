@@ -1,0 +1,36 @@
+version: '3'
+services:
+  mysql:
+    image: mysql:5.5
+    container_name: mysqldb
+    restart: always
+    environment:
+      - MYSQL_ROOT_PASSWORD=vincentcws
+    expose:
+      - 3306
+    ports:
+      - 3306:3306
+    networks:
+      - backend
+    volumes:
+      - "D:/vincent/docker/mydiskdb/dbdata:/var/lib/mysql"
+    #network_mode: bridge
+    
+  web:
+    container_name: disk
+    build: .
+    depends_on:
+      - mysql
+    expose:
+      - 8080
+    ports:
+      - 8080:8080
+    networks:
+      - backend
+    restart: on-failure
+    #network_mode: bridge
+networks:
+  backend:
+
+volumes:
+  dbdata:
